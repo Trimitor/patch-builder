@@ -1,0 +1,32 @@
+{
+    "data": [
+        {
+            "groupid": 918,
+            "name": "Druid Travel Form",
+            "to": [
+                {
+                    "id": 1,
+                    "name": "Zombie Travel Form",
+                    "preview": "https://s2.coinmarketcap.com/static/img/coins/64x64/1.png"
+                },
+                {
+                    "id": 2,
+                    "name": "Kultiran Travel Form",
+                    "preview": "https://s2.coinmarketcap.com/static/img/coins/64x64/2.png"
+                }
+            ]
+        },
+        {
+            "groupid": 2428,
+            "name": "Druid Aquatic Form",
+            "to": [
+                {
+                    "id": 1,
+                    "name": "Zombie Aquatic Form", 
+                    "preview": "https://s2.coinmarketcap.com/static/img/coins/64x64/1.png"
+                    
+                }
+            ]
+        }
+    ]
+}

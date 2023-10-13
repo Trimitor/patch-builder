@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
+        integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="_css/patch-builder.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+        integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.bundle.min.js"
+        integrity="sha512-i9cEfJwUwViEPFKdC1enz4ZRGBj8YQo6QByFTF92YXHi7waCqyexvRD75S5NVTsSiTv7rKWqG9Y5eFxmRsOn0A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Web Patch Builder for WotLK HD Client</title>
+</head>
+
+<body class="d-flex flex-column h-100">
+    <main class="flex-shrink-0">
+        <div class="px-4 py-5 my-5 text-center">
+            <img class="d-block mx-auto mb-2" src="_assets/wowi.svg" style="color:blue;" alt="" width="128" height="128">
+            <h1 class="display-5 fw-bold text-body-emphasis">Web Patch Builder</h1>
+            <div class="col-lg-6 mx-auto">
+                <p class="lead mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the
+                    world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive
+                    grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <button type="button" class="btn btn-primary btn-warcraft-blue btn-lg px-4 gap-3">Download WotLK HD Client</button>
+                    <button type="button" class="btn btn-outline-secondary btn-lg px-4">Secondary</button>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="callout callout-info">
+                Перед использованием данного конфигуратора вам <strong>необходимо</strong> скачать <strong><a
+                        class="link-info" href="files/patch-x.mpq">файл с моделями</a></strong>.
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 mb-3">
+                    <h1 class="display-6">Configurator</h1>
+                    <hr class="bg-danger border-2 border-top border-danger">
+                    <div id="configurator">
+                        
+                    </div>
+
+                    <div class="d-flex">
+                        <div class="me-auto pe-1">
+                            <button type="button" id="add" class="btn btn-dark">Add new</button>
+                        </div>
+                        <div class="ps-1 pe-1">
+                            <select id="lang-select" class="form-select" name="lang">
+                                <option disabled selected>Select Language</option>
+                                <option value="enUS">English (US)</option>
+                                <option value="enGB">English (UK)</option>
+                                <option value="deDE">German</option>
+                                <option value="esES">Spanish</option>
+                                <option value="esMX">Mexican</option>
+                                <option value="frFR">French</option>
+                                <option value="koKR">Korean</option>
+                                <option value="ruRU">Russian</option>
+                                <option value="zhCN">Chinese</option>
+                                <option value="enCN">Chinese (English voice)</option>
+                                <option value="zhTW">Taiwanese</option>
+                            </select>
+                        </div>
+                        <div class="ps-1">
+                            <a id="build" class="btn btn-light"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <h5 class="card-header">Рекомендуемые</h5>
+                        <div class="card-body">
+                            <h5 class="card-title">Особое обращение с заголовком</h5>
+                            <p class="card-text">С вспомогательным текстом ниже в качестве естественного перехода к
+                                дополнительному контенту.</p>
+                            <a href="#" class="btn btn-primary">Перейти куда-нибудь</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer mt-auto py-3 bg-dark text-center text-white">
+        <div class="container p-4">
+            <section class="mb-4">
+                <a class="btn btn-outline-light btn-circle m-1" href="//wotlk-hd-client.github.io" role="button"><i
+                        class="fab fa-github"></i></a>
+                <a class="btn btn-outline-light btn-circle m-1" href="//discord.gg/Gyb9Z252vt" role="button"><i
+                        class="fab fa-discord"></i></a>
+            </section>
+            <section class="mb-4">
+                <p>
+                    This project is created by fans of World of Warcraft and is not affiliated with Blizzard
+                    Entertainment. The game information used in this project is obtained from open sources and may be
+                    incomplete or inaccurate.
+                </p>
+            </section>
+        </div>
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2023 HD Client for WotLK with ❤️ to WoW Community
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"
+        integrity="sha512-XMVd28F1oH/O71fzwBnV7HucLxVwtxf26XV8P4wPk26EDxuGZ91N8bsOttmnomcCD3CS5ZMRL50H0GgOHvegtg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.5/js.cookie.min.js"
+        integrity="sha512-nlp9/l96/EpjYBx7EP7pGASVXNe80hGhYAUrjeXnu/fyF5Py0/RXav4BBNs7n5Hx1WFhOEOWSAVjGeC3oKxDVQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="_js/DBCUtil.js"></script>
+    <script src="_js/patch-builder.js"></script>
+</body>
+
+</html>

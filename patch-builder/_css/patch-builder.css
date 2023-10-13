@@ -1,0 +1,87 @@
+.btn-circle {
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    padding: 0;
+    border-radius: 50%;
+}
+
+.btn-circle i {
+    position: relative;
+    top: -2px;
+}
+
+.btn-circle-sm {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 0.9rem;
+}
+
+.btn-circle-lg {
+    width: 55px;
+    height: 55px;
+    line-height: 55px;
+    font-size: 1.1rem;
+}
+
+.btn-circle-xl {
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    font-size: 1.3rem;
+}
+
+.btn-warcraft-blue {
+    background: rgb(21, 85, 141);
+    border-color: rgb(24, 47, 88);
+    /*background: linear-gradient(180deg, rgba(24,47,88,1) 0%, rgba(21,85,141,1) 50%, rgba(24,47,88,1) 100%);*/
+}
+
+.btn-warcraft-blue:hover {
+    background: rgb(24, 47, 88);
+}
+
+a.btn.btn-outline-light.btn-circle.m-1 {
+    --bs-btn-border-width: 2px;
+}
+
+.callout {
+    padding: 1.25rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    background-color: var(--callout-bg, var(--bs-gray-100));
+    border-left: 0.25rem solid var(--callout-border, var(--bs-gray-300))
+}
+
+.callout h4 {
+    margin-bottom: .25rem
+}
+
+.callout>:last-child {
+    margin-bottom: 0
+}
+
+.callout+.callout {
+    margin-top: -.25rem
+}
+
+.callout .highlight {
+    background-color: rgba(0, 0, 0, 0.05)
+}
+
+.callout-info {
+    --callout-bg: rgba(var(--bs-info-rgb), .075);
+    --callout-border: rgba(var(--bs-info-rgb), .5)
+}
+
+.callout-warning {
+    --callout-bg: rgba(var(--bs-warning-rgb), .075);
+    --callout-border: rgba(var(--bs-warning-rgb), .5)
+}
+
+.callout-danger {
+    --callout-bg: rgba(var(--bs-danger-rgb), .075);
+    --callout-border: rgba(var(--bs-danger-rgb), .5)
+}

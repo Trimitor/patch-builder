@@ -1,0 +1,48 @@
+{
+  "fields": [
+    {
+      "name": "m_ID",
+      "type": "long"
+    },
+    {
+      "name": "m_mapID",
+      "type": "long"
+    },
+    {
+      "name": "m_areaID",
+      "type": "long"
+    },
+    {
+      "name": "m_areaName",
+      "type": "str"
+    },
+    {
+      "name": "m_locLeft",
+      "type": "float"
+    },
+    {
+      "name": "m_locRight",
+      "type": "float"
+    },
+    {
+      "name": "m_locTop",
+      "type": "float"
+    },
+    {
+      "name": "m_locBottom",
+      "type": "float"
+    },
+    {
+      "name": "m_displayMapID",
+      "type": "long"
+    },
+    {
+      "name": "m_defaultDungeonFloor",
+      "type": "long"
+    },
+    {
+      "name": "m_parentWorldMapID",
+      "type": "long"
+    }
+  ]
+}
