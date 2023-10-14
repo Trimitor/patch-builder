@@ -43,6 +43,16 @@
     background: rgb(24, 47, 88);
 }
 
+.btn-discord {
+    color: #5865f2;
+    border-color: #5865f2;
+}
+
+.btn-discord:hover {
+    background: #5865f2;
+    color: white;
+}
+
 a.btn.btn-outline-light.btn-circle.m-1 {
     --bs-btn-border-width: 2px;
 }
