@@ -764,6 +764,188 @@
                 }
                 
             ]
+        },
+        {
+            "groupid": 15374,
+            "name": "Druid Alliance OwlBear Form",
+            "to": [
+                {
+                    "id": "dralt1",
+                    "name": "Alternative Alliance OwlBear Form (Variant 1)", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "dralt2",
+                    "name": "Alternative Alliance OwlBear Form (Variant 2)", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "dralt3",
+                    "name": "Alternative Alliance OwlBear Form (Variant 3)", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "draltfire",
+                    "name": "Fire-style Alliance OwlBear Form", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "draltleg1",
+                    "name": "Legion Alliance OwlBear Form (Variant 1)", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "draltleg2",
+                    "name": "Legion Alliance OwlBear Form (Variant 2)", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "draltleg3",
+                    "name": "Legion Alliance OwlBear Form (Variant 3)", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "drmorekul",
+                    "name": "Kultiran Alliance OwlBear Form", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "drmoretr",
+                    "name": "Troll Alliance OwlBear Form", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "drold",
+                    "name": "Old-style Alliance OwlBear Form", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "drspec",
+                    "name": "Spectral Alliance OwlBear Form (Variant 1)", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "drspecowl",
+                    "name": "Spectral Alliance OwlBear Form (Variant 2)", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "drwild",
+                    "name": "Wild Alliance OwlBear Form", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "drzomb",
+                    "name": "Zombie Alliance OwlBear Form", 
+                    "preview": ""
+                    
+                }
+                
+            ]
+        },
+        {
+            "groupid": 15375,
+            "name": "Druid Horde OwlBear Form",
+            "to": [
+                {
+                    "id": "dralt1",
+                    "name": "Alternative Horde OwlBear Form (Variant 1)", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "dralt2",
+                    "name": "Alternative Horde OwlBear Form (Variant 2)", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "dralt3",
+                    "name": "Alternative Horde OwlBear Form (Variant 3)", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "draltfire",
+                    "name": "Fire-style Horde OwlBear Form", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "draltleg1",
+                    "name": "Legion Horde OwlBear Form (Variant 1)", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "draltleg2",
+                    "name": "Legion Horde OwlBear Form (Variant 2)", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "draltleg3",
+                    "name": "Legion Horde OwlBear Form (Variant 3)", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "drmorekul",
+                    "name": "Kultiran Horde OwlBear Form", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "drmoretr",
+                    "name": "Troll Horde OwlBear Form", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "drold",
+                    "name": "Old-style Horde OwlBear Form", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "drspec",
+                    "name": "Spectral Horde OwlBear Form (Variant 1)", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "drspecowl",
+                    "name": "Spectral Horde OwlBear Form (Variant 2)", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "drwild",
+                    "name": "Wild Horde OwlBear Form", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "drzomb",
+                    "name": "Zombie Horde OwlBear Form", 
+                    "preview": ""
+                    
+                }
+                
+            ]
         }
 
     ]
