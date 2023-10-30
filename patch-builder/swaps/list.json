@@ -1,31 +1,88 @@
 {
     "data": [
         {
-            "groupid": 918,
-            "name": "Druid Travel Form",
-            "to": [
-                {
-                    "id": 1,
-                    "name": "Zombie Travel Form",
-                    "preview": "https://www.icy-veins.com/forums/news/36342-kul-tiran-druid-bear-forms-in-battle-for-azeroth.jpg"
-                },
-                {
-                    "id": 2,
-                    "name": "Kultiran Travel Form",
-                    "preview": "https://www.icy-veins.com/forums/news/37218-kul-tiran-druid-travel-form-in-battle-for-azeroth.jpg"
-                }
-            ]
-        },
-        {
             "groupid": 2428,
             "name": "Druid Aquatic Form",
             "to": [
                 {
-                    "id": 1,
+                    "id": "dralt1",
+                    "name": "Alternative Aquatic Form (Variant 1)", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "dralt2",
+                    "name": "Alternative Aquatic Form (Variant 2)", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "dralt3",
+                    "name": "Alternative Aquatic Form (Variant 3)", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "draltfire",
+                    "name": "Fire-style Aquatic Form", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "draltleg1",
+                    "name": "Legion Aquatic Form (Variant 1)", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "draltleg2",
+                    "name": "Legion Aquatic Form (Variant 2)", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "draltleg3",
+                    "name": "Legion Aquatic Form (Variant 3)", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "drmorekul",
+                    "name": "Kultiran Aquatic Form", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "drmoretr",
+                    "name": "Troll Aquatic Form", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "drold",
+                    "name": "Old-style Aquatic Form", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "drspec",
+                    "name": "Spectral Aquatic Form", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "drwild",
+                    "name": "Wild Aquatic Form", 
+                    "preview": ""
+                    
+                },
+                {
+                    "id": "drzomb",
                     "name": "Zombie Aquatic Form", 
                     "preview": ""
                     
                 }
+                
             ]
         }
     ]
