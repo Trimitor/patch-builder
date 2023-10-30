@@ -1,0 +1,6 @@
+m_ID,m_modelID,m_soundID,m_extendedDisplayInfoID,m_creatureModelScale,m_creatureModelAlpha,m_textureVariation_1,m_textureVariation_2,m_textureVariation_3,m_portraitTextureName,m_bloodLevel,m_bloodID,m_npcSoundID,m_particleColorID,m_creatureGeosetData,m_objectEffectPackageID
+892,7070,0,0,0.8999999761581421,255,druidcatkultiran_light,armorreflect4,druidcatkultiran_fx,,1,1,0,0,0x0,0
+29405,7070,0,0,0.8999999761581421,255,druidcatkultiran_green,armorreflect4,druidcatkultiran_fx,,1,1,0,0,0x0,0
+29406,7070,0,0,0.8999999761581421,255,druidcatkultiran_brown,armorreflect4,druidcatkultiran_fx,,1,1,0,0,0x0,0
+29407,7070,0,0,0.8999999761581421,255,druidcatkultiran_dark,armorreflect4,druidcatkultiran_fx,,1,1,0,0,0x0,0
+29408,7070,0,0,0.8999999761581421,255,druidcatkultiran_light,armorreflect4,druidcatkultiran_fx,,1,1,0,0,0x0,0

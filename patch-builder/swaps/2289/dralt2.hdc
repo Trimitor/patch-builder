@@ -1,0 +1,6 @@
+m_ID,m_modelID,m_soundID,m_extendedDisplayInfoID,m_creatureModelScale,m_creatureModelAlpha,m_textureVariation_1,m_textureVariation_2,m_textureVariation_3,m_portraitTextureName,m_bloodLevel,m_bloodID,m_npcSoundID,m_particleColorID,m_creatureGeosetData,m_objectEffectPackageID
+2289,7080,3022,0,0.6500000357627869,255,druidbear2_artifact6_brown,,,,1,0,0,0,0x0,0
+29418,7080,0,0,0.6500000357627869,255,druidbear2_artifact6_white,,,,1,0,0,0,0x0,0
+29419,7080,0,0,0.6500000357627869,255,druidbear2_artifact6_white,,,,1,0,0,0,0x0,0
+29420,7080,0,0,0.6500000357627869,255,druidbear2_artifact6_brown,,,,1,0,0,0,0x0,0
+29421,7080,0,0,0.6500000357627869,255,druidbear2_artifact6_brown,,,,1,0,0,0,0x0,0

@@ -1,0 +1,6 @@
+m_ID,m_modelID,m_soundID,m_extendedDisplayInfoID,m_creatureModelScale,m_creatureModelAlpha,m_textureVariation_1,m_textureVariation_2,m_textureVariation_3,m_portraitTextureName,m_bloodLevel,m_bloodID,m_npcSoundID,m_particleColorID,m_creatureGeosetData,m_objectEffectPackageID
+2289,214,3022,0,1.2000000476837158,255,DruidTaurenBearSkinBrown,,,,1,0,0,0,0x0,0
+29418,7074,0,0,1.2000000476837158,255,druidbear2_artifact3_fire,druidbear2_artifact3_armor_red,armorreflect4,,1,0,0,0,0x0,0
+29419,7074,0,0,1.2000000476837158,255,druidbear2_artifact3_fire,druidbear2_artifact3_armor_red,armorreflect4,,1,0,0,0,0x0,0
+29420,7074,0,0,1.2000000476837158,255,druidbear2_artifact3_fire,druidbear2_artifact3_armor_red,armorreflect4,,1,0,0,0,0x0,0
+29421,7074,0,0,1.2000000476837158,255,druidbear2_artifact3_fire,druidbear2_artifact3_armor_red,armorreflect4,,1,0,0,0,0x0,0
