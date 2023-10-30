@@ -33,32 +33,33 @@
                 <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
                     <a href="#" class="btn btn-primary btn-warcraft-blue btn-lg px-4 gap-3">Download WotLK HD Client</a>
                     <a href="//discord.gg/Gyb9Z252vt" class="btn btn-outline-primary btn-discord btn-lg px-4"><i
-                        class="fab fa-discord"></i> Discord</a>
+                            class="fab fa-discord"></i> Discord</a>
                 </div>
             </div>
         </div>
         <div class="container">
             <div class="callout callout-info">
-                Перед использованием данного конфигуратора вам <strong>необходимо</strong> скачать <strong><a
-                        class="link-info" href="files/patch-x.mpq">файл с моделями</a></strong>.
+                Before using this configurator, you <strong>must</strong> download <strong><a class="link-info"
+                        href="files/patch-x.mpq">the model files</a></strong>.
             </div>
         </div>
-        <div class="container">
+        <div class="container min-vh-60">
             <div class="row">
                 <div class="col-md-8 mb-3">
                     <h1 class="display-6">Configurator</h1>
                     <hr class="bg-danger border-2 border-top border-danger">
                     <div id="configurator">
-                        
+
                     </div>
 
                     <div class="d-flex">
                         <div class="me-auto pe-1">
-                            <button type="button" id="add" class="btn btn-dark"><i class="fa-solid fa-plus"></i> Add new</button>
+                            <button type="button" id="add" class="btn btn-dark"><i class="fa-solid fa-plus"></i> Add
+                                new</button>
                         </div>
                         <div class="ps-1 pe-1">
-                            <select id="lang-select" class="form-select" name="lang">
-                                <option disabled selected>Select Language</option>
+                            <select id="lang-select" class="form-select" name="lang" required>
+                                <option value="-1" selected>Select Language</option>
                                 <option value="enUS">English (US)</option>
                                 <option value="enGB">English (UK)</option>
                                 <option value="deDE">German</option>
@@ -81,6 +82,7 @@
                     <div class="sticky-md-top">
                         <h1 class="display-6">Preview</h1>
                         <hr class="bg-danger border-2 border-top border-danger">
+                        <div id="preview"></div>
                     </div>
                 </div>
             </div>
@@ -97,7 +99,7 @@
             </section>
         </div>
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            © 2023 HD Client for WotLK with ❤️ to WoW Community
+            2023 HD Client for WotLK with ❤️ to WoW Community
         </div>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"

@@ -58,7 +58,7 @@
     },
     {
       "name": "m_creatureGeosetData",
-      "type": "long"
+      "type": "flags"
     },
     {
       "name": "m_objectEffectPackageID",

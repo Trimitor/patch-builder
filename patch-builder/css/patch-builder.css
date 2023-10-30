@@ -95,3 +95,15 @@ a.btn.btn-outline-light.btn-circle.m-1 {
     --callout-bg: rgba(var(--bs-danger-rgb), .075);
     --callout-border: rgba(var(--bs-danger-rgb), .5)
 }
+
+.min-vh-80 {
+    min-height: 80vh !important
+}
+
+.min-vh-70 {
+    min-height: 70vh !important
+}
+
+.min-vh-60 {
+    min-height: 60vh !important
+}

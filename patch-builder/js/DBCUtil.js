@@ -1,60 +1,65 @@
 const MAGIC_NUMBER = 1128416343; // WDBC
 const debug = false; // debug mode
 
-fromDBC = async (file) => {
-    switch (typeof (file)) {
-        case 'string':
-            return await fetch(file).then(res => res.arrayBuffer());
-        case 'object':
-            if (file instanceof ArrayBuffer) { return file; }
-            if (file instanceof Blob) {
-                const fileReader = new FileReader();
-                return new Promise((resolve, reject) => {
-                    fileReader.onload = () => resolve(fileReader.result);
-                    fileReader.onerror = () => reject(fileReader.error);
-                    fileReader.readAsArrayBuffer(file);
-                })
-            }
-        default:
-            throw new Error(`Invalid file: ${file}`);
+loadFrom = async (file) => {
+    if (typeof file === 'string') {
+        return await fetch(file).then(res => res.arrayBuffer());
     }
+    if (file instanceof ArrayBuffer) {
+        return file;
+    }
+    if (file instanceof Blob) {
+        return new Promise((resolve, reject) => {
+            const fileReader = new FileReader();
+            fileReader.onload = () => resolve(fileReader.result);
+            fileReader.onerror = () => reject(fileReader.error);
+            fileReader.readAsArrayBuffer(file);
+        })
+    }
+    throw new Error(`Invalid file: ${file}`);
 }
 
-fromCSV = async (file, delimiter = ',', header = false) => {
-    switch (typeof (file)) {
-        case 'string':
-            return await fetch(file).then(res => res.text()).then(text => {
-                text.split('\n').map(line => {
-                    const row = line.split(delimiter);
-                    if (header) {
-                        row.shift();
-                    }
-                    return row;
-                })
-            })
-        case 'object':
-            if (file instanceof Blob) {
-                let rows = [];
-                const fileReader = new FileReader();
-                return new Promise((resolve, reject) => {
-                    fileReader.onload = () => resolve(fileReader.result);
-                    fileReader.onerror = () => reject(fileReader.error);
-                    fileReader.readAsText(file);
-                }).then(text => {
-                    text.split('\r\n').map(line => {
-                        const row = line.split(delimiter);
-                        rows.push(row);
-                    })
-                    if (header) {
-                        rows.shift();
-                    }
-                    return rows;
-                })
+createFrom = async (file, delimiter = ',') => {
+    if (typeof file === 'string') {
+        const text = await (await fetch(file)).text();
+        const rows = text.split(/\r\n/g);
+        const columnHeaders = rows.shift().split(delimiter);
+        return rows.map(row => {
+            const columns = row.split(delimiter);
+            const obj = {};
+            columnHeaders.forEach((header, i) => {
+                obj[header] = columns[i];
+            });
+            return obj;
+        })
 
-            }
-        default:
-            throw new Error(`Invalid file: ${typeof (file)}`);
     }
+
+    if (file instanceof Blob) {
+        const text = await new Promise((resolve, reject) => {
+            const fileReader = new FileReader();
+            fileReader.onload = () => resolve(fileReader.result);
+            fileReader.onerror = () => reject(fileReader.error);
+            fileReader.readAsText(file);
+        });
+
+        const rows = text.split(/\r\n/g);
+        const columnHeaders = rows.shift().split(delimiter);
+        return rows.map(row => {
+            const columns = row.split(delimiter);
+            const obj = {};
+            columnHeaders.forEach((header, i) => {
+                obj[header] = columns[i];
+            });
+            return obj;
+        });
+    }
+
+    if (file instanceof Array) {
+        return file;
+    }
+
+    throw new Error(`Invalid file: ${typeof file}`);
 }
 
 toCSV = (obj) => {
@@ -82,25 +87,19 @@ class DBC {
     }
 
     getRecordSize = (schema) => {
-        let record_size = 0;
-        schema.fields.forEach(field => {
-            switch (field.type) {
-                case 'long':
-                    record_size += 4;
-                    break;
-                case 'str':
-                    record_size += 4;
-                    break;
-                case 'float':
-                    record_size += 4;
-                    break;
-                case 'byte':
-                    record_size += 1;
-                default:
-                    throw new Error(`Invalid field type: ${field.type}`);
+        const typeSizes = {
+            'long': 4,
+            'str': 4,
+            'float': 4,
+            'flags': 4,
+            'bool': 1
+        };
+        return schema.fields.reduce((size, field) => {
+            if (!typeSizes[field.type]) {
+                throw new Error(`Invalid field type: ${field.type}`);
             }
-        });
-        return record_size;
+            return size + typeSizes[field.type];
+        }, 0);
     }
 
     read = async () => {
@@ -112,7 +111,7 @@ class DBC {
         this.record_size = 0;
         this.string_block_size = 0;
 
-        return fromDBC(this.path).then(buffer => {
+        return loadFrom(this.path).then(buffer => {
             if (debug) console.log(buffer);
             const view = new DataView(buffer);
             let offset = 0;
@@ -158,6 +157,10 @@ class DBC {
                             row[field.name] = view.getInt32(offset, true);
                             offset += 4;
                             break;
+                        case 'flags':
+                            row[field.name] = `0x${Number(view.getUint32(offset, true)).toString(16)}`;
+                            offset += 4;
+                            break;
                         case 'float':
                             row[field.name] = view.getFloat32(offset, true);
                             offset += 4;
@@ -197,26 +200,23 @@ class DBC {
 
         this.string_block = [];
 
-        return fromCSV(this.path).then(array => {
-            const header = array.shift();
-
+        return createFrom(this.path).then(array => {
             this.magic = MAGIC_NUMBER;
             this.record_count = array.length;
-            this.field_count = header.length;
+            this.field_count = schema.fields.length;
             this.record_size = this.getRecordSize(schema);
-            
-            this.string_block[0] = '';
-            this.string_block_size ++;
 
-            array.forEach((row) => {
-                row.forEach((field, j) => {
-                  if (schema.fields[j].type === 'str' && !this.string_block.includes(field)) {
-                    this.string_block[this.string_block_size] = field;
-                    this.string_block_size += field.length + 1;
-                  }
-                });
-              });
-            
+            this.string_block[0] = '';
+            this.string_block_size++;
+
+            for (let row of array) {
+                for ( let field of schema.fields ) {
+                    if (field.type === 'str' && !this.string_block.includes(row[field.name])) {
+                        this.string_block[this.string_block_size] = row[field.name];
+                        this.string_block_size += row[field.name].length + 1;
+                    }
+                }
+            }
 
             if (debug) {
                 console.log(`Magic: ${this.magic}\n` +
@@ -244,11 +244,9 @@ class DBC {
             view.setUint32(offset, this.string_block_size, true);
             offset += 4;
 
-            for (let row = 0; row < this.record_count; row++) {
-                for (let col = 0; col < this.field_count; col++) {
-                    const field = schema.fields[col];
-                    const value = array[row][col];
-                    
+            for (let row of array) {
+                for ( let field of schema.fields ) {
+                    const value = row[field.name];
                     switch (field.type) {
                         case 'str':
                             view.setUint32(offset, this.string_block.indexOf(value), true);
@@ -258,12 +256,16 @@ class DBC {
                             view.setInt32(offset, value, true);
                             offset += 4;
                             break;
+                        case 'flags':
+                            view.setUint32(offset, parseInt(value, 16), true);
+                            offset += 4;
+                            break;
                         case 'float':
                             view.setFloat32(offset, value, true);
                             offset += 4;
                             break;
-                        case 'byte':
-                            view.setUint8(offset, value);
+                        case 'bool':
+                            view.setUint8(offset, value, true);
                             offset += 1;
                             break;
                         default:
@@ -285,16 +287,6 @@ class DBC {
 
         })
     }
-
-    fromCSV = async () => {
-        return await this.write();
-    }
-}
-
-onmessage = async (event) => {
-    const dbc = new DBC(event.data.path, '../' + event.data.schema);
-    const res = await dbc.fromCSV();
-    postMessage(res);
 }
 
 
