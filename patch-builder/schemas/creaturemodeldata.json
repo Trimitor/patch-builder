@@ -1,0 +1,116 @@
+{
+  "fields": [
+    {
+      "name": "m_ID",
+      "type": "long"
+    },
+    {
+      "name": "m_flags",
+      "type": "long"
+    },
+    {
+      "name": "m_modelName",
+      "type": "str"
+    },
+    {
+      "name": "m_sizeClass",
+      "type": "long"
+    },
+    {
+      "name": "m_modelScale",
+      "type": "float"
+    },
+    {
+      "name": "m_bloodID",
+      "type": "long"
+    },
+    {
+      "name": "m_footprintTextureID",
+      "type": "long"
+    },
+    {
+      "name": "m_footprintTextureLength",
+      "type": "float"
+    },
+    {
+      "name": "m_footprintTextureWidth",
+      "type": "float"
+    },
+    {
+      "name": "m_footprintParticleScale",
+      "type": "float"
+    },
+    {
+      "name": "m_foleyMaterialID",
+      "type": "long"
+    },
+    {
+      "name": "m_footstepShakeSize",
+      "type": "float"
+    },
+    {
+      "name": "m_deathThudShakeSize",
+      "type": "float"
+    },
+    {
+      "name": "m_soundID",
+      "type": "long"
+    },
+    {
+      "name": "m_collisionWidth",
+      "type": "float"
+    },
+    {
+      "name": "m_collisionHeight",
+      "type": "float"
+    },
+    {
+      "name": "m_mountHeight",
+      "type": "float"
+    },
+    {
+      "name": "m_geoBoxMinX",
+      "type": "float"
+    },
+    {
+      "name": "m_geoBoxMinY",
+      "type": "float"
+    },
+    {
+      "name": "m_geoBoxMinZ",
+      "type": "float"
+    },
+    {
+      "name": "m_geoBoxMaxX",
+      "type": "float"
+    },
+    {
+      "name": "m_geoBoxMaxY",
+      "type": "float"
+    },
+    {
+      "name": "m_geoBoxMaxZ",
+      "type": "float"
+    },
+    {
+      "name": "m_worldEffectScale",
+      "type": "float"
+    },
+    {
+      "name": "m_attachedEffectScale",
+      "type": "float"
+    },
+    {
+      "name": "m_missileCollisionRadius",
+      "type": "float"
+    },
+    {
+      "name": "m_missileCollisionPush",
+      "type": "float"
+    },
+    {
+      "name": "m_missileCollisionRaise",
+      "type": "float"
+    }
+  ]
+}

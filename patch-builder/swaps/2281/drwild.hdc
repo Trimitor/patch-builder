@@ -1,7 +1,0 @@
-m_ID,m_modelID,m_soundID,m_extendedDisplayInfoID,m_creatureModelScale,m_creatureModelAlpha,m_textureVariation_1,m_textureVariation_2,m_textureVariation_3,m_portraitTextureName,m_bloodLevel,m_bloodID,m_npcSoundID,m_particleColorID,m_creatureGeosetData,m_objectEffectPackageID
-2281,213,3022,0,1,255,DruidBearSkinRed,,,,1,0,0,0,0x0,0
-29413,191,0,0,0.3499999940395355,255,ThunderBeastSkinBlack,,,,1,0,0,0,0x0,0
-29414,191,0,0,0.3499999940395355,255,ThunderBeastSkinBlue,,,,1,0,0,0,0x0,0
-29415,191,0,0,0.3499999940395355,255,ThunderBeastSkinBlue,,,,1,0,0,0,0x0,0
-29416,191,0,0,0.3499999940395355,255,ThunderBeastSkinGreen,,,,1,0,0,0,0x0,0
-29417,191,0,0,0.3499999940395355,255,ThunderBeastSkinGreen,,,,1,0,0,0,0x0,0

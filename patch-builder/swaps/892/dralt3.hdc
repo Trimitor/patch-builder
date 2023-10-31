@@ -1,6 +1,0 @@
-m_ID,m_modelID,m_soundID,m_extendedDisplayInfoID,m_creatureModelScale,m_creatureModelAlpha,m_textureVariation_1,m_textureVariation_2,m_textureVariation_3,m_portraitTextureName,m_bloodLevel,m_bloodID,m_npcSoundID,m_particleColorID,m_creatureGeosetData,m_objectEffectPackageID
-892,7082,0,0,0.8999999761581421,255,fox2_black,fox2_fx,armorreflect4,,1,1,0,0,0x0,0
-29405,7082,0,0,0.8999999761581421,255,fox2_blue,fox2_fx,armorreflect4,,1,1,0,0,0x0,0
-29406,7082,0,0,0.8999999761581421,255,fox2_darkred,fox2_fx,armorreflect4,,1,1,0,0,0x0,0
-29407,7082,0,0,0.8999999761581421,255,fox2_gold,fox2_fx,armorreflect4,,1,1,0,0,0x0,0
-29408,7082,0,0,0.8999999761581421,255,fox2_white,fox2_fx,armorreflect4,,1,1,0,0,0x0,0

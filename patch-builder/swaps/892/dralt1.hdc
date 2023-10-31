@@ -1,6 +1,0 @@
-m_ID,m_modelID,m_soundID,m_extendedDisplayInfoID,m_creatureModelScale,m_creatureModelAlpha,m_textureVariation_1,m_textureVariation_2,m_textureVariation_3,m_portraitTextureName,m_bloodLevel,m_bloodID,m_npcSoundID,m_particleColorID,m_creatureGeosetData,m_objectEffectPackageID
-892,1231,0,0,0.8999999761581421,255,DRUIDCATSKINBLACK,,,,1,1,0,0,0x0,0
-29405,1231,0,0,0.8999999761581421,255,DruidCatSkinViolet,DruidCatSkinViolet,,,1,1,0,0,0x0,0
-29406,1231,0,0,0.8999999761581421,255,DruidCatSkinPurple,DruidCatSkinPurple,,,1,1,0,0,0x0,0
-29407,1231,0,0,0.8999999761581421,255,DruidCatSkinDarkBlue,DruidCatSkinDarkBlue,,,1,1,0,0,0x0,0
-29408,1231,0,0,0.8999999761581421,255,DruidCatSkinWhite,DruidCatSkinWhite,,,1,1,0,0,0x0,0

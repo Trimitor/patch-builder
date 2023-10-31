@@ -1,164 +1,305 @@
-let d = {}, ld = {}, temp = {};
+let list = {};
+let dbc = {};
+let temp = {};
 let gc = 0;
+const constants = {
+  lang: {
+    enUS: "English (US)",
+    enGB: "English (UK)",
+    deDE: "German",
+    esES: "Spanish",
+    esMX: "Mexican",
+    frFR: "French",
+    koKR: "Korean",
+    ruRU: "Russian",
+    zhCN: "Chinese",
+    enCN: "Chinese (English voice)",
+    zhTW: "Taiwanese",
+  },
+  swaplist: "swaps/list.json",
+  dbcs: [
+    {
+      CreatureDisplayInfo: "dbcs/default/creaturedisplayinfo.dbc",
+      CreatureModelData: "dbcs/default/creaturemodeldata.dbc",
+    },
+    {
+      CreatureDisplayInfo: "dbcs/hdclient/creaturedisplayinfo.dbc",
+      CreatureModelData: "dbcs/hdclient/creaturemodeldata.dbc",
+    },
+  ],
+  schemas: {
+    CreatureDisplayInfo: "schemas/creaturedisplayinfo.json",
+    CreatureModelData: "schemas/creaturemodeldata.json",
+  },
+};
 
-const configurator = document.getElementById('configurator');
-const build = document.getElementById('build');
-const preview = document.getElementById('preview');
-const langSelect = document.getElementById('lang-select');
-const dbcData = {
-  path: 'dbcs/creaturedisplayinfo.dbc',
-  schema: 'schemas/creaturedisplayinfo.json'
-}
-const mpqData = [
-  temp,
-  'dbcs/creaturemodeldata.dbc',
-]
+const configurator = document.getElementById("configurator");
+const build = document.getElementById("build");
+const preview = document.getElementById("preview");
+const langselect = document.getElementById("lang-select");
+const addbtn = document.getElementById("add");
+const ishd = document.getElementById("ishd");
 
-addGroup = async () => {
-  const group = document.createElement('div');
+window.addEventListener("load", async () => {
+  loadLangs();
+  build.innerHTML = `<i class="fa-solid fa-cogs"></i> Build`;
+  await loadList(constants.swaplist);
+
+  addbtn.addEventListener("click", async () => {
+    addGroup();
+  });
+
+  build.addEventListener("click", async () => {
+    await validateBeforeBuild();
+  });
+
+  langselect.addEventListener("change", async () => {
+    langselect.classList.remove("is-invalid");
+  });
+
+  addGroup();
+});
+
+loadList = async (url) => {
+  const response = await fetch(url);
+  list = await response.json();
+};
+
+loadLangs = () => {
+  langselect.innerHTML =
+    '<option selected disabled value="-1">Select language...</option>';
+  for (const [key, value] of Object.entries(constants.lang)) {
+    langselect.innerHTML += `<option value="${key}">${value}</option>`;
+  }
+};
+
+addGroup = () => {
+  const group = document.createElement("div");
   group.id = `group-${gc}`;
-  group.className = 'input-group mb-3';
+  group.className = "input-group mb-3";
 
-  const origsel = createSelect('original', gc);
-  const swapsel = createSelect('swapped', gc);
-  const delbtn = createDeleteButton(gc);
+  const [o, s, d] = [ocreate(gc), screate(gc), bcreate(gc)];
 
-  group.appendChild(origsel);
-  group.appendChild(swapsel);
-  group.appendChild(delbtn);
+  [o, s, d].forEach((el) => group.appendChild(el));
+
   configurator.appendChild(group);
 
-  origsel.addEventListener('change', () => {
-    loadSwaps(origsel, swapsel);
+  o.addEventListener("change", () => {
+    loadSwaps(o, s);
+    o.classList.remove("is-invalid");
   });
-
-  delbtn.addEventListener('click', () => {
-    configurator.removeChild(group);
+  s.addEventListener("change", () => {
+    loadPreview(o, s);
+    s.classList.remove("is-invalid");
   });
-
-  group.addEventListener('mouseover', () => {
-    showPreview(origsel, swapsel);
-  });
+  d.addEventListener("click", () => configurator.removeChild(group));
 
   gc++;
 };
 
-createSelect = (type, gc) => {
-  const select = document.createElement('select');
-  select.id = `${type}-${gc}`;
-  select.className = 'form-select';
-  const disabledOption = document.createElement('option');
-  disabledOption.disabled = true;
-  disabledOption.selected = true;
-  disabledOption.innerHTML = 'Select...';
-  disabledOption.value = -1;
-  select.appendChild(disabledOption);
+ocreate = (gc) => {
+  const select = document.createElement("select");
+  select.id = `original-${gc}`;
+  select.className = "form-select";
+  select.innerHTML = '<option selected disabled value="-1">Select...</option>';
+  for (let el of list.data) {
+    select.innerHTML += `<option value="${el.groupid}">${el.name}</option>`;
+  }
+  return select;
+};
 
-  d.data.forEach((item) => {
-    const option = document.createElement('option');
-    option.value = item.groupid;
-    option.innerHTML = item.name;
-    select.appendChild(option);
-  });
+screate = (gc) => {
+  const select = document.createElement("select");
+  select.id = `swapped-${gc}`;
+  select.className = "form-select";
+  select.innerHTML = '<option selected disabled value="-1">Select...</option>';
 
   return select;
-}
+};
 
-createDeleteButton = (gc) => {
-  const delbtn = document.createElement('button');
+bcreate = (gc) => {
+  const delbtn = document.createElement("button");
   delbtn.id = `delete-${gc}`;
-  delbtn.className = 'btn btn-outline-danger';
-  delbtn.type = 'button';
+  delbtn.className = "btn btn-outline-danger";
+  delbtn.type = "button";
   delbtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
 
   return delbtn;
-}
+};
 
 loadSwaps = async (o, s) => {
   s.innerHTML = '<option selected disabled value="-1">Select...</option>';
-  const group = d.data.find(item => item.groupid == o.value);
-  if (group) {
-    group.to.forEach(({id, name}) => {
+  list.data
+    .find((item) => item.groupid == o.value)
+    .to.forEach(({ id, name }) => {
       s.innerHTML += `<option value="${id}">${name}</option>`;
     });
+};
+
+loadPreview = async (o, s) => {
+  if (o.value !== -1 && s.value !== -1) {
+    const group = list.data.find((x) => x.groupid == o.value);
+    if (group) {
+      const url = group.to.find((x) => x.id == s.value)?.preview;
+      if (url) {
+        preview.innerHTML = `<img class="img-fluid" src="${url}">`;
+      }
+    }
   }
 };
 
-buildPatch = async () => {
-  if (langSelect.value !== "-1") {
-    build.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Wait...`;
-    build.classList.add('disabled');
-
-    for (let g of configurator.children) {
-      const [o, s] = g.children;
-      await makeSwap(o, s);
+validateBeforeBuild = async () => {
+  let warn = false; // if there is a warning, don't build
+  for (let g of configurator.children) {
+    const [o, s] = g.children;
+    if (o.value == -1) {
+      o.classList.add("is-invalid");
+      warn = true;
     }
-
-    const worker = new Worker('js/worker.js');
-    worker.postMessage({ path: temp, schema: dbcData.schema });
-
-    worker.addEventListener('message', async (e) => {
-      build.innerHTML = `<i class="fa-solid fa-download"></i> Download`;
-      build.className = 'btn btn-success';
-      build.removeEventListener('click', buildPatch);
-      const file = new Blob([e.data], { type: 'application/octet-stream' });
-
-      /*let archive = new JSZip();
-      archive.folder(`patch-${langSelect.value}-x.mpq/DBFilesClient`)
-        .add('CreatureDisplayInfo.dbc', file)
-        .file(mpqData[1]);*/
-
-
-      build.href = URL.createObjectURL(file); // archive.generate({ type: 'blob' });
-      build.download = `creaturedisplayinfo-${langSelect.value}.dbc`;
-      temp = ld; // reset temp
-    });
+    if (s.value == -1) {
+      s.classList.add("is-invalid");
+      warn = true;
+    }
   }
-}
 
-const addNew = document.getElementById('add');
-addNew.addEventListener('click', addGroup);
+  if (langselect.value == -1) {
+    langselect.classList.add("is-invalid");
+    warn = true;
+  }
 
-window.addEventListener('load', async () => {
-  d = await fetch('swaps/list.json').then(res => res.json());
+  if (warn) return;
 
-  build.innerHTML = `<i class="fa-solid fa-gears"></i> Build`;
-  build.addEventListener('click', buildPatch)
+  for (let g of configurator.children) {
+    const [o, s] = g.children;
+    o.classList.add("disabled");
+    s.classList.add("disabled");
+  }
 
-  const openDBC = new DBC(dbcData.path, dbcData.schema);
-  ld = await openDBC.read();
+  await buildPatch();
+};
 
-  temp = ld;
+getResource = (file) => {
+  let type = ishd.checked ? 1 : 0;
+  let pathes = [constants.dbcs[type][file], constants.schemas[file]];
+  return pathes;
+};
 
-  addGroup();
-})
+readDBCs = async () => {
+  const [cdi, cdiSchema] = getResource("CreatureDisplayInfo");
+  const [cmd, cmdSchema] = getResource("CreatureModelData");
+
+  const cdiPromise = new Promise((resolve) => {
+    const cmiWorker = new Worker("js/worker-read.js");
+    cmiWorker.postMessage({ path: cdi, schema: cdiSchema });
+    cmiWorker.onmessage = async (e) => {
+      resolve(e.data);
+    };
+  });
+
+  const cmdPromise = new Promise((resolve) => {
+    const cmdWorker = new Worker("js/worker-read.js");
+    cmdWorker.postMessage({ path: cmd, schema: cmdSchema });
+    cmdWorker.onmessage = async (e) => {
+      resolve(e.data);
+    };
+  })
+
+  const [cdiResult, cmdResult] = await Promise.all([
+    cdiPromise, cmdPromise
+  ])
+
+  dbc["CreatureDisplayInfo"] = cdiResult;
+  dbc["CreatureModelData"] = cmdResult;
+
+  temp = dbc;
+};
+
+buildPatch = async () => {
+  build.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Wait...`;
+  build.classList.add("disabled");
+
+  await readDBCs();
+
+  for (let g of configurator.children) {
+    const [o, s] = g.children;
+    await makeSwap(o, s);
+  }
+
+  const cdiPromise = new Promise((resolve) => {
+    const cdiWorker = new Worker("js/worker-write.js");
+    cdiWorker.postMessage({
+      path: temp.CreatureDisplayInfo,
+      schema: getResource("CreatureDisplayInfo")[1],
+    });
+    cdiWorker.addEventListener("message", async (e) => {
+      resolve(new Blob([e.data], { type: "application/octet-stream" }));
+    });
+  });
+
+  const cmdPromise = new Promise((resolve) => {
+    const cmdWorker = new Worker("js/worker-write.js");
+    cmdWorker.postMessage({
+      path: temp.CreatureModelData,
+      schema: getResource("CreatureModelData")[1],
+    });
+    cmdWorker.addEventListener("message", async (e) => {
+      resolve(new Blob([e.data], { type: "application/octet-stream" }));
+    });
+  })
+
+  const [cdiResult, cmdResult] = await Promise.all([
+    cdiPromise, cmdPromise
+  ])
+
+  let archive = new JSZip();
+  archive.folder(`patch-${langselect.value}-x.mpq/DBFilesClient`)
+    .file("CreatureDisplayInfo.dbc", cdiResult)
+    .file("CreatureModelData.dbc", cmdResult);
+
+  archive.generateAsync({ type: "blob" }).then((content) => {
+    build.href = URL.createObjectURL(content);
+    build.className = "btn btn-success";
+    build.download = `patch-${langselect.value}-x.mpq.zip`;
+    build.innerHTML = `<i class="fa-solid fa-download"></i> Download`;
+    build.classList.remove("disabled");
+  })
+
+  build.removeEventListener("click", validateBeforeBuild);
+
+  temp = {}; // reset temp
+};
 
 makeSwap = async (o, s) => {
-  if (o.value !== -1 && s.value !== -1) {
-    const response = await fetch(`swaps/${o.value}/${s.value}.hdc`);
-    const swaps = await response.text();
-    const swapRows = swaps.split("\n").map(row => row.split(","));
+  const displayinfo = await fetch(
+    `swaps/displayinfo/${o.value}/${s.value}.hdc`
+  ).then((res) => res.text());
+  const modeldata = await fetch(
+    `swaps/modeldata/${o.value}/${s.value}.hdc`
+  ).then((res) => res.text());
+  const displayinfoRows = displayinfo.split("\n").map((row) => row.split(","));
+  const modeldataRows = modeldata.split("\n").map((row) => row.split(","));
 
-    for (let i = 1; i < swapRows.length; i++) {
-      let record = temp.find(x => x[swapRows[0][0]] == swapRows[i][0])
-      if (record) {
-        Object.assign(record, swapRows[i].reduce((obj, value, index) => {
-          obj[swapRows[0][index]] = value;
+  for (let i = 1; i < displayinfoRows.length; i++) {
+    let record = temp["CreatureDisplayInfo"].find(
+      (x) => x[displayinfoRows[0][0]] == displayinfoRows[i][0]
+    );
+    if (record) {
+      Object.assign(
+        record,
+        displayinfoRows[i].reduce((obj, value, index) => {
+          obj[displayinfoRows[0][index]] = value;
           return obj;
-        }, {}));
-      }
+        }, {})
+      );
     }
   }
-}
 
-showPreview = async (o, s) => {
-  if (o.value !== -1 && s.value !== -1) {
-    const group = d.data.find(x => x.groupid == o.value);
-    if (group) {
-      const previewUrl = group.to.find(x => x.id == s.value)?.preview;
-      if (previewUrl) {
-        preview.innerHTML = `<img class="img-fluid" src="${previewUrl}">`;
-      }
-    }
+  for (let i = 1; i < modeldataRows.length; i++) {
+    let record = {};
+    modeldataRows[i].forEach((value, index) => {
+      record[modeldataRows[0][index]] = value;
+    })
+    temp["CreatureModelData"].push(record);
   }
-}
+  console.log(temp["CreatureModelData"]);
+};

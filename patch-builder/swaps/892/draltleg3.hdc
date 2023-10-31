@@ -1,6 +1,0 @@
-m_ID,m_modelID,m_soundID,m_extendedDisplayInfoID,m_creatureModelScale,m_creatureModelAlpha,m_textureVariation_1,m_textureVariation_2,m_textureVariation_3,m_portraitTextureName,m_bloodLevel,m_bloodID,m_npcSoundID,m_particleColorID,m_creatureGeosetData,m_objectEffectPackageID
-892,7073,0,0,0.8999999761581421,255,druidcat2_artifact4_purple,druidcat2_artifact4armor_purple,fireparticlebase,armorreflect4,1,1,0,0,0x0,0
-29405,7071,0,0,0.8999999761581421,255,druidcat2_artifact4_green,druidcat2_artifact4armor_green,fireparticlebase,armorreflect4,1,1,0,0,0x0,0
-29406,7071,0,0,0.8999999761581421,255,druidcat2_artifact4_purple,druidcat2_artifact4armor_purple,fireparticlebase,armorreflect4,1,1,0,0,0x0,0
-29407,7071,0,0,0.8999999761581421,255,druidcat2_artifact4_orange,druidcat2_artifact4armor_orange,fireparticlebase,armorreflect4,1,1,0,0,0x0,0
-29408,7071,0,0,0.8999999761581421,255,druidcat2_artifact4_white,druidcat2_artifact4armor_white,fireparticlebase,armorreflect4,1,1,0,0,0x0,0

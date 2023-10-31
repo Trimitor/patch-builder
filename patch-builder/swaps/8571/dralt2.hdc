@@ -1,6 +1,0 @@
-m_ID,m_modelID,m_soundID,m_extendedDisplayInfoID,m_creatureModelScale,m_creatureModelAlpha,m_textureVariation_1,m_textureVariation_2,m_textureVariation_3,m_portraitTextureName,m_bloodLevel,m_bloodID,m_npcSoundID,m_particleColorID,m_creatureGeosetData,m_objectEffectPackageID
-8571,1232,0,0,1,255,DruidCatTaurenSkinBrown,DruidCatTaurenSkinBrown,,,-1,0,0,0,0x0,0
-29409,7083,0,0,1,255,saberonlion,saberonarmorred2,saberonarmorpurple3,smoothreflect,-1,0,0,0,0x0,0
-29410,7083,0,0,1,255,saberonlion,saberonarmorred2,saberonarmorpurple3,smoothreflect,-1,0,0,0,0x0,0
-29411,7083,0,0,1,255,saberontiger,saberonarmorred2,saberonarmorred3,smoothreflect,-1,0,0,0,0x0,0
-29412,7083,0,0,1,255,saberontiger,saberonarmorred2,saberonarmorred3,smoothreflect,-1,0,0,0,0x0,0
