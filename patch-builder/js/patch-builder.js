@@ -301,5 +301,4 @@ makeSwap = async (o, s) => {
     })
     temp["CreatureModelData"].push(record);
   }
-  console.log(temp["CreatureModelData"]);
 };
