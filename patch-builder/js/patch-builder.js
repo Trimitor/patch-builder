@@ -42,17 +42,17 @@ const ishd = document.getElementById("ishd");
 
 window.addEventListener("load", async () => {
   loadLangs();
-  build.innerHTML = `<i class="fa-solid fa-cogs"></i> Build`;
   await loadList(constants.swaplist);
 
   addbtn.addEventListener("click", async () => {
     addGroup();
   });
 
-  build.addEventListener("click", validateBeforeBuild);
+  setBuild();
 
   langselect.addEventListener("change", async () => {
     langselect.classList.remove("is-invalid");
+    setBuild();
   });
 
   addGroup();
@@ -89,6 +89,7 @@ addGroup = () => {
   s.addEventListener("change", () => {
     loadPreview(o, s);
     s.classList.remove("is-invalid");
+    setBuild();
   });
   d.addEventListener("click", () => configurator.removeChild(group));
 
@@ -296,3 +297,11 @@ makeSwap = async (o, s) => {
     temp["CreatureModelData"].push(record);
   }
 };
+
+setBuild = () => {
+  build.className = "btn btn-light";
+  build.innerHTML = `<i class="fa-solid fa-cogs"></i> Build`;
+  URL.revokeObjectURL(build.href);
+  build.removeEventListener("click", validateBeforeBuild);
+  build.addEventListener("click", validateBeforeBuild);
+}
