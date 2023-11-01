@@ -49,9 +49,7 @@ window.addEventListener("load", async () => {
     addGroup();
   });
 
-  build.addEventListener("click", async () => {
-    await validateBeforeBuild();
-  });
+  build.addEventListener("click", validateBeforeBuild);
 
   langselect.addEventListener("change", async () => {
     langselect.classList.remove("is-invalid");
@@ -202,11 +200,9 @@ readDBCs = async () => {
     cmdWorker.onmessage = async (e) => {
       resolve(e.data);
     };
-  })
+  });
 
-  const [cdiResult, cmdResult] = await Promise.all([
-    cdiPromise, cmdPromise
-  ])
+  const [cdiResult, cmdResult] = await Promise.all([cdiPromise, cmdPromise]);
 
   dbc["CreatureDisplayInfo"] = cdiResult;
   dbc["CreatureModelData"] = cmdResult;
@@ -217,6 +213,7 @@ readDBCs = async () => {
 buildPatch = async () => {
   build.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Wait...`;
   build.classList.add("disabled");
+  build.removeEventListener("click", validateBeforeBuild)
 
   await readDBCs();
 
@@ -245,14 +242,13 @@ buildPatch = async () => {
     cmdWorker.addEventListener("message", async (e) => {
       resolve(new Blob([e.data], { type: "application/octet-stream" }));
     });
-  })
+  });
 
-  const [cdiResult, cmdResult] = await Promise.all([
-    cdiPromise, cmdPromise
-  ])
+  const [cdiResult, cmdResult] = await Promise.all([cdiPromise, cmdPromise]);
 
   let archive = new JSZip();
-  archive.folder(`patch-${langselect.value}-x.mpq/DBFilesClient`)
+  archive
+    .folder(`patch-${langselect.value}-x.mpq/DBFilesClient`)
     .file("CreatureDisplayInfo.dbc", cdiResult)
     .file("CreatureModelData.dbc", cmdResult);
 
@@ -262,9 +258,7 @@ buildPatch = async () => {
     build.download = `patch-${langselect.value}-x.mpq.zip`;
     build.innerHTML = `<i class="fa-solid fa-download"></i> Download`;
     build.classList.remove("disabled");
-  })
-
-  build.removeEventListener("click", validateBeforeBuild);
+  });
 
   temp = {}; // reset temp
 };
@@ -298,7 +292,7 @@ makeSwap = async (o, s) => {
     let record = {};
     modeldataRows[i].forEach((value, index) => {
       record[modeldataRows[0][index]] = value;
-    })
+    });
     temp["CreatureModelData"].push(record);
   }
 };
