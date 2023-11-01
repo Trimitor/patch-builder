@@ -3,7 +3,10 @@ const debug = false; // debug mode
 
 loadFrom = async (file) => {
     if (typeof file === 'string') {
-        return await fetch(file).then(res => res.arrayBuffer());
+        return await fetch(file).then(res => {
+            console.log(res);
+            res.arrayBuffer()
+        });
     }
     if (file instanceof ArrayBuffer) {
         return file;
