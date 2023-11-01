@@ -19,12 +19,12 @@ const constants = {
   swaplist: "swaps/list.json",
   dbcs: [
     {
-      CreatureDisplayInfo: "dbcs/default/creaturedisplayinfo.dbc",
-      CreatureModelData: "dbcs/default/creaturemodeldata.dbc",
+      CreatureDisplayInfo: "dbcs/default/CreatureDisplayInfo.dbc",
+      CreatureModelData: "dbcs/default/CreatureModelData.dbc",
     },
     {
-      CreatureDisplayInfo: "dbcs/hdclient/creaturedisplayinfo.dbc",
-      CreatureModelData: "dbcs/hdclient/creaturemodeldata.dbc",
+      CreatureDisplayInfo: "dbcs/hdclient/CreatureDisplayInfo.dbc",
+      CreatureModelData: "dbcs/hdclient/CreatureModelData.dbc",
     },
   ],
   schemas: {
