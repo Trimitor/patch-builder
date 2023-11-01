@@ -118,7 +118,7 @@ class DBC {
 
             this.magic = view.getUint32(offset, true);
             offset += 4;
-            if (this.magic !== MAGIC_NUMBER) throw new Error('Invalid magic number');
+            if (this.magic !== MAGIC_NUMBER) throw new Error(`Invalid magic number: ${this.magic}`);
             this.record_count = view.getUint32(offset, true);
             offset += 4;
             this.field_count = view.getUint32(offset, true);
