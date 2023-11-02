@@ -128,15 +128,6 @@ class DBC {
             this.string_block_size = view.getUint32(offset, true);
             offset += 4;
 
-            if (debug) {
-                console.log(`Magic: ${this.magic}\n` +
-                    `Record count: ${this.record_count}\n` +
-                    `Field count: ${this.field_count}\n` +
-                    `Record size: ${this.record_size}\n` +
-                    `String block size: ${this.string_block_size}\n`
-                );
-            }
-
             this.rows = [];
 
             for (let i = 0; i < this.record_count; i++) {
@@ -176,7 +167,19 @@ class DBC {
                 this.rows.push(row);
             }
 
-            if (debug) console.log(this.rows);
+            if (debug) {
+                console.log(
+                    `=============== Read Debug ===============`
+                );
+                console.log(
+                    `Magic: ${this.magic}\n` +
+                    `Record count: ${this.record_count}\n` +
+                    `Field count: ${this.field_count}\n` +
+                    `Record size: ${this.record_size}\n` +
+                    `String block size: ${this.string_block_size}\n`
+                );
+                console.log(this.rows)
+            }
 
             return this.rows;
 
@@ -216,18 +219,6 @@ class DBC {
                         this.string_block_size += row[field.name].length + 1;
                     }
                 }
-            }
-
-            if (debug) {
-                console.log(`Magic: ${this.magic}\n` +
-                    `Record count: ${this.record_count}\n` +
-                    `Field count: ${this.field_count}\n` +
-                    `Record size: ${this.record_size}\n` +
-                    `String block size: ${this.string_block_size}\n`
-
-                );
-                console.log(`String block:`);
-                console.log(this.string_block);
             }
 
             const buffer = new ArrayBuffer(20 + this.record_count * this.record_size + this.string_block_size);
@@ -282,6 +273,22 @@ class DBC {
                 view.setUint8(offset, 0);
                 offset += 1;
             });
+
+            if (debug) {
+                console.log(
+                    `=============== Write Debug ===============`
+                )
+                console.log(
+                    `Magic: ${this.magic}\n` +
+                    `Record count: ${this.record_count}\n` +
+                    `Field count: ${this.field_count}\n` +
+                    `Record size: ${this.record_size}\n` +
+                    `String block size: ${this.string_block_size}\n`
+
+                );
+                console.log(`String block:`);
+                console.log(this.string_block);
+            }
 
             return buffer;
 

@@ -302,6 +302,5 @@ setBuild = () => {
   build.className = "btn btn-light";
   build.innerHTML = `<i class="fa-solid fa-cogs"></i> Build`;
   URL.revokeObjectURL(build.href);
-  build.removeEventListener("click", validateBeforeBuild);
   build.addEventListener("click", validateBeforeBuild);
 }
