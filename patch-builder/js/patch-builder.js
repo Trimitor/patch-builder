@@ -2,6 +2,7 @@ let list = {};
 let dbc = {};
 let temp = {};
 let gc = 0;
+
 const constants = {
   lang: {
     enUS: "English (US)",
@@ -40,8 +41,11 @@ const langselect = document.getElementById("lang-select");
 const addbtn = document.getElementById("add");
 const ishd = document.getElementById("ishd");
 
+const langCookies = Cookies.get("lang");
+
 window.addEventListener("load", async () => {
   loadLangs();
+
   await loadList(constants.swaplist);
 
   addbtn.addEventListener("click", async () => {
@@ -52,8 +56,11 @@ window.addEventListener("load", async () => {
 
   langselect.addEventListener("change", async () => {
     langselect.classList.remove("is-invalid");
+    Cookies.set("lang", langselect.value, { expires: 30 });
     setBuild();
   });
+
+  langselect.value = langCookies ? langCookies : -1;
 
   addGroup();
 });
