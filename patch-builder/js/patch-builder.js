@@ -176,6 +176,7 @@ validateBeforeBuild = async () => {
   if (warn) return;
 
   disableBuild(true)
+  
   await buildPatch();
 };
 
@@ -270,10 +271,10 @@ buildPatch = async () => {
 
 makeSwap = async (o, s) => {
   const displayinfo = await fetch(
-    `swaps/displayinfo/${o.value}/${s.value}.hdc`
+    `swaps/${o.value}/${s.value}/di.hdc`
   ).then((res) => res.text());
   const modeldata = await fetch(
-    `swaps/modeldata/${o.value}/${s.value}.hdc`
+    `swaps/${o.value}/${s.value}/md.hdc`
   ).then((res) => res.text());
   const displayinfoRows = displayinfo.split("\n").map((row) => row.split(","));
   const modeldataRows = modeldata.split("\n").map((row) => row.split(","));
