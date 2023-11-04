@@ -175,12 +175,7 @@ validateBeforeBuild = async () => {
 
   if (warn) return;
 
-  for (let g of configurator.children) {
-    const [o, s] = g.children;
-    o.classList.add("disabled");
-    s.classList.add("disabled");
-  }
-
+  disableBuild(true)
   await buildPatch();
 };
 
@@ -269,6 +264,8 @@ buildPatch = async () => {
   });
 
   temp = {}; // reset temp
+
+  disableBuild(false)
 };
 
 makeSwap = async (o, s) => {
@@ -308,6 +305,30 @@ makeSwap = async (o, s) => {
 setBuild = () => {
   build.className = "btn btn-light";
   build.innerHTML = `<i class="fa-solid fa-cogs"></i> Build`;
-  URL.revokeObjectURL(build.href);
+  build.removeAttribute("href");
   build.addEventListener("click", validateBeforeBuild);
+}
+
+disableBuild = (istrue) => {
+  if (istrue) {
+    for (let g of configurator.children) {
+      const [o, s, d] = g.children;
+      o.setAttribute("disabled", "");
+      s.setAttribute("disabled", "");
+      d.classList.add("disabled");
+    }
+  
+    langselect.setAttribute("disabled", "");
+    addbtn.classList.add("disabled");
+  } else {
+    for (let g of configurator.children) {
+      const [o, s, d] = g.children;
+      o.removeAttribute("disabled");
+      s.removeAttribute("disabled");
+      d.classList.remove("disabled");
+    }
+  
+    langselect.removeAttribute("disabled");
+    addbtn.classList.remove("disabled");
+  }
 }
