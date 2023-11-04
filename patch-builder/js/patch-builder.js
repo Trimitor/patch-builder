@@ -271,10 +271,10 @@ buildPatch = async () => {
 
 makeSwap = async (o, s) => {
   const displayinfo = await fetch(
-    `swaps/${o.value}/${s.value}/di.hdc`
+    `swaps/${o.value}/${s.value}/display.hdc`
   ).then((res) => res.text());
   const modeldata = await fetch(
-    `swaps/${o.value}/${s.value}/md.hdc`
+    `swaps/${o.value}/${s.value}/model.hdc`
   ).then((res) => res.text());
   const displayinfoRows = displayinfo.split("\n").map((row) => row.split(","));
   const modeldataRows = modeldata.split("\n").map((row) => row.split(","));
