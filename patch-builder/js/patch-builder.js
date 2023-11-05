@@ -176,7 +176,7 @@ validateBeforeBuild = async () => {
   if (warn) return;
 
   disableBuild(true)
-  
+
   await buildPatch();
 };
 
@@ -275,28 +275,33 @@ makeSwap = async (o, s) => {
   const displayinfoRows = displayinfo.split("\n").map((row) => row.split(","));
   const modeldataRows = modeldata.split("\n").map((row) => row.split(","));
 
-  for (let i = 1; i < displayinfoRows.length; i++) {
-    let record = temp["CreatureDisplayInfo"].find(
-      (x) => x[displayinfoRows[0][0]] == displayinfoRows[i][0]
-    );
-    if (record) {
-      Object.assign(
-        record,
-        displayinfoRows[i].reduce((obj, value, index) => {
-          obj[displayinfoRows[0][index]] = value;
-          return obj;
-        }, {})
-      );
-    }
-  }
+  let swapIndex = {}
 
   for (let i = 1; i < modeldataRows.length; i++) {
     let record = {};
     modeldataRows[i].forEach((value, index) => {
       record[modeldataRows[0][index]] = value;
+      if (modeldataRows[0][index] == "m_ID") {
+        swapIndex[value] = temp["CreatureModelData"][temp["CreatureModelData"].length - 1]["m_ID"] + 1;
+        record[modeldataRows[0][index]] = swapIndex[value];
+      }
     });
     temp["CreatureModelData"].push(record);
   }
+  
+  for (let i = 1; i < displayinfoRows.length; i++) {
+    let record = temp["CreatureDisplayInfo"].find(
+      (x) => x[displayinfoRows[0][0]] == displayinfoRows[i][0]
+    );
+    Object.assign(record, displayinfoRows[i].reduce((obj, value, index) => {
+      obj[displayinfoRows[0][index]] = value;
+      if (displayinfoRows[0][index] == "m_modelID") {
+        obj[displayinfoRows[0][index]] = swapIndex[value];
+      }
+      return obj;
+    }, {}));
+  }
+  
 };
 
 setBuild = () => {
@@ -314,7 +319,7 @@ disableBuild = (istrue) => {
       s.setAttribute("disabled", "");
       d.classList.add("disabled");
     }
-  
+
     langselect.setAttribute("disabled", "");
     addbtn.classList.add("disabled");
   } else {
@@ -324,7 +329,7 @@ disableBuild = (istrue) => {
       s.removeAttribute("disabled");
       d.classList.remove("disabled");
     }
-  
+
     langselect.removeAttribute("disabled");
     addbtn.classList.remove("disabled");
   }

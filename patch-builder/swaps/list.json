@@ -1,12 +1,12 @@
 {
     "data": [
         {
-            "groupid": "druid-hfly",
-            "name": "Druid Horde Fly Form",
+            "groupid": "druid-flight-h",
+            "name": "Druid Flight Form (Horde)",
             "to": [
                 {
                     "id": "honey-bee",
-                    "name": "Bee", 
+                    "name": "Honey Bee", 
                     "preview": ""
                     
                 }                
