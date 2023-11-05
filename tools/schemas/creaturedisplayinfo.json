@@ -1,0 +1,68 @@
+{
+  "fields": [
+    {
+      "name": "m_ID",
+      "type": "long"
+    },
+    {
+      "name": "m_modelID",
+      "type": "long"
+    },
+    {
+      "name": "m_soundID",
+      "type": "long"
+    },
+    {
+      "name": "m_extendedDisplayInfoID",
+      "type": "long"
+    },
+    {
+      "name": "m_creatureModelScale",
+      "type": "float"
+    },
+    {
+      "name": "m_creatureModelAlpha",
+      "type": "long"
+    },
+    {
+      "name": "m_textureVariation_1",
+      "type": "str"
+    },
+    {
+      "name": "m_textureVariation_2",
+      "type": "str"
+    },
+    {
+      "name": "m_textureVariation_3",
+      "type": "str"
+    },
+    {
+      "name": "m_portraitTextureName",
+      "type": "str"
+    },
+    {
+      "name": "m_bloodLevel",
+      "type": "long"
+    },
+    {
+      "name": "m_bloodID",
+      "type": "long"
+    },
+    {
+      "name": "m_npcSoundID",
+      "type": "long"
+    },
+    {
+      "name": "m_particleColorID",
+      "type": "long"
+    },
+    {
+      "name": "m_creatureGeosetData",
+      "type": "flags"
+    },
+    {
+      "name": "m_objectEffectPackageID",
+      "type": "long"
+    }
+  ]
+}
