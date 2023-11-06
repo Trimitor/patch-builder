@@ -42,7 +42,7 @@ const addbtn = document.getElementById("add");
 const ishd = document.getElementById("ishd");
 
 const langCookies = Cookies.get("lang");
-const ishdCookies = JSON.parse(Cookies.get("ishd"));
+const ishdCookies = Cookies.get("ishd");
 
 window.addEventListener("load", async () => {
   loadLangs();
@@ -66,7 +66,7 @@ window.addEventListener("load", async () => {
   });
 
   langselect.value = langCookies ? langCookies : -1;
-  ishd.checked = ishdCookies === undefined ? true : ishdCookies;
+  ishd.checked = ishdCookies === undefined ? true : JSON.parse(ishdCookies);
 
   addGroup();
 });
