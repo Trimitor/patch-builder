@@ -17,20 +17,20 @@ const constants = {
     enCN: "Chinese (English voice)",
     zhTW: "Taiwanese",
   },
-  swaplist: "swaps/list.json",
+  swaplist: "files/swaps/list.json",
   dbcs: [
     {
-      CreatureDisplayInfo: "dbcs/default/CreatureDisplayInfo.dbc",
-      CreatureModelData: "dbcs/default/CreatureModelData.dbc",
+      CreatureDisplayInfo: "files/dbcs/default/CreatureDisplayInfo.dbc",
+      CreatureModelData: "files/dbcs/default/CreatureModelData.dbc",
     },
     {
-      CreatureDisplayInfo: "dbcs/hdclient/CreatureDisplayInfo.dbc",
-      CreatureModelData: "dbcs/hdclient/CreatureModelData.dbc",
+      CreatureDisplayInfo: "files/dbcs/hdclient/CreatureDisplayInfo.dbc",
+      CreatureModelData: "files/dbcs/hdclient/CreatureModelData.dbc",
     },
   ],
   schemas: {
-    CreatureDisplayInfo: "schemas/creaturedisplayinfo.json",
-    CreatureModelData: "schemas/creaturemodeldata.json",
+    CreatureDisplayInfo: "files/schemas/creaturedisplayinfo.json",
+    CreatureModelData: "files/schemas/creaturemodeldata.json",
   },
 };
 
@@ -42,6 +42,7 @@ const addbtn = document.getElementById("add");
 const ishd = document.getElementById("ishd");
 
 const langCookies = Cookies.get("lang");
+const ishdCookies = JSON.parse(Cookies.get("ishd"));
 
 window.addEventListener("load", async () => {
   loadLangs();
@@ -52,6 +53,10 @@ window.addEventListener("load", async () => {
     addGroup();
   });
 
+  ishd.addEventListener("change", async () => {
+    Cookies.set("ishd", ishd.checked, { expires: 30 });
+  })
+
   setBuild();
 
   langselect.addEventListener("change", async () => {
@@ -61,6 +66,7 @@ window.addEventListener("load", async () => {
   });
 
   langselect.value = langCookies ? langCookies : -1;
+  ishd.checked = ishdCookies === undefined ? true : ishdCookies;
 
   addGroup();
 });
@@ -270,8 +276,8 @@ buildPatch = async () => {
 };
 
 makeSwap = async (o, s) => {
-  const displayinfo = await fetch(`swaps/${o.value}/${s.value}/display.hdc`).then((res) => res.text());
-  const modeldata = await fetch(`swaps/${o.value}/${s.value}/model.hdc`).then((res) => res.text());
+  const displayinfo = await fetch(`files/swaps/${o.value}/${s.value}/display.hdc`).then((res) => res.text());
+  const modeldata = await fetch(`files/swaps/${o.value}/${s.value}/model.hdc`).then((res) => res.text());
   const displayinfoRows = displayinfo.split("\n").map((row) => row.split(","));
   const modeldataRows = modeldata.split("\n").map((row) => row.split(","));
 
@@ -319,7 +325,7 @@ disableBuild = (istrue) => {
       s.setAttribute("disabled", "");
       d.classList.add("disabled");
     }
-
+    ishd.setAttribute("disabled", "");
     langselect.setAttribute("disabled", "");
     addbtn.classList.add("disabled");
   } else {
@@ -329,7 +335,7 @@ disableBuild = (istrue) => {
       s.removeAttribute("disabled");
       d.classList.remove("disabled");
     }
-
+    ishd.removeAttribute("disabled");
     langselect.removeAttribute("disabled");
     addbtn.classList.remove("disabled");
   }
