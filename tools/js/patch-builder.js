@@ -74,6 +74,9 @@ window.addEventListener("load", async () => {
 loadList = async (url) => {
   const response = await fetch(url);
   list = await response.json();
+  list.data.sort(function(a, b) {
+    return a.name.localeCompare(b.name);
+  });
 };
 
 loadLangs = () => {
