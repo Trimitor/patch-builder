@@ -74,7 +74,7 @@ window.addEventListener("load", async () => {
 loadList = async (url) => {
   const response = await fetch(url);
   list = await response.json();
-  list.data.sort(function(a, b) {
+  list.data.sort(function (a, b) {
     return a.name.localeCompare(b.name);
   });
 };
@@ -144,11 +144,11 @@ bcreate = (gc) => {
 
 loadSwaps = async (o, s) => {
   s.innerHTML = '<option selected disabled value="-1">Select...</option>';
-  list.data
-    .find((item) => item.groupid == o.value)
-    .to.forEach(({ id, name }) => {
-      s.innerHTML += `<option value="${id}">${name}</option>`;
-    });
+  const data = list.data.find(item => item.groupid == o.value);
+  const sorted = data.to.sort((a, b) => a.name.localeCompare(b.name));
+  sorted.forEach(({ id, name }) => {
+    s.innerHTML += `<option value="${id}">${name}</option>`;
+  });
 };
 
 loadPreview = async (o, s) => {
@@ -297,7 +297,7 @@ makeSwap = async (o, s) => {
     });
     temp["CreatureModelData"].push(record);
   }
-  
+
   for (let i = 1; i < displayinfoRows.length; i++) {
     let record = temp["CreatureDisplayInfo"].find(
       (x) => x[displayinfoRows[0][0]] == displayinfoRows[i][0]
@@ -310,7 +310,7 @@ makeSwap = async (o, s) => {
       return obj;
     }, {}));
   }
-  
+
 };
 
 setBuild = () => {

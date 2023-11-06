@@ -1,7 +1,7 @@
 const input_dbc = document.getElementById('dbc-file');
 input_dbc.addEventListener('change', async () => {
     const file = input_dbc.files[0];
-    const schema = 'schemas/' + input_dbc.files[0].name.toLowerCase().split('.').slice(0, -1).join('.') + '.json';
+    const schema = 'files/schemas/' + input_dbc.files[0].name.toLowerCase().split('.').slice(0, -1).join('.') + '.json';
     const dbc = new DBC(file, schema)
     const csvContent = await dbc.toCSV();
 
@@ -17,7 +17,7 @@ input_dbc.addEventListener('change', async () => {
 const input_csv = document.getElementById('csv-file');
 input_csv.addEventListener('change', async () => {
     const file = input_csv.files[0];
-    const schema = 'schemas/' + input_csv.files[0].name.toLowerCase().split('.').slice(0, -1).join('.') + '.json';
+    const schema = 'files/schemas/' + input_csv.files[0].name.toLowerCase().split('.').slice(0, -1).join('.') + '.json';
     const dbc = new DBC(file, schema)
     const dbcContent = await dbc.write();
     
