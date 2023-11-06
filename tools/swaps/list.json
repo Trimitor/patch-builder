@@ -11,6 +11,17 @@
                     
                 }                
             ]
+        },
+        {
+            "groupid": "arthaslichking",
+            "name": "Arthas Lich King",
+            "to": [
+                {
+                    "id": "patricklichking",
+                    "name": "Patrick Lich King",
+                    "preview": ""
+                }
+            ]
         }
     ]
 }
